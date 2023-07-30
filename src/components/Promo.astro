@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+  url: string;
+  image: string;
+}
+
+const { title, url, image } = Astro.props;
+---
+
+<a href={url}>
+  <article
+    class='bg-cover text-white py-0 flex justify-center items-center flex-col border-black border pux-drop-shadow'
+    style={`background-image: url('${image}');`}
+  >
+    <div
+      class='bg-gradient-to-t from-black via-transparent w-full h-full pt-36 group prose prose-invert max-w-none'
+    >
+      <h3
+        class='uppercase text-shadow w-full text-center py-3 relative top-0 group-hover:-top-4 transition-all duration-300'
+      >
+        {title}
+      </h3>
+    </div>
+  </article>
+</a>

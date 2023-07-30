@@ -1,5 +1,43 @@
 ---
 import ContentLayout from "../layouts/ContentLayout.astro";
+import Promo from "../components/Promo.astro";
+import promo from "../data/promo";
 ---
 
-<ContentLayout title='43. výsadkový pluk'>asd</ContentLayout>
+<ContentLayout title='43. výsadkový pluk'>
+  <section
+    class='w-full bg-gradient-to-b from-primary lg:bg-gradient-to-r to-primary-dark via-primary-dark'
+  >
+    <div
+      class='container mx-auto p-10 text-white flex flex-col lg:flex-row lg:space-x-10'
+    >
+      <div
+        class='mb-10 lg:mb-0 font-light w-full lg:w-2/3 prose prose-invert max-w-none'
+      >
+        <h2 class='uppercase text-shadow'>Přidej se k&nbsp;výsadkářům</h2>
+        <p class='text-xl'>
+          Chceš mít právo hrdě nosit červený baret, provádět padákové seskoky a
+          účastnit se prestižních kurzů a zahraničních operací?
+        </p>
+      </div>
+      <div class='flex flex-1 lg:flex-auto items-center justify-end'>
+        <a
+          class='py-3 px-10 border border-primary-dark ring-4 ring-primary rounded transition-all duration-100 mb-0 bg-primary/50 hover:bg-primary-light text-white flex flex-col flex-1 lg:flex-initial items-center'
+          href='/kariera'
+        >
+          <img
+            src='images/logo/wings.svg'
+            class='w-auto h-14 mb-2 drop-shadow-bold'
+          />
+          <span class='text-lg text-shadow-sm'>Staň se výsadkářem</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class='container container-shadow mx-auto bg-stone-900'>
+    <div class='grid grid-cols-1 md:grid-cols-2 gap-5 p-5'>
+      {promo.map((item) => <Promo {...item} />)}
+    </div>
+  </section>
+</ContentLayout>

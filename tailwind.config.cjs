@@ -15,6 +15,9 @@ module.exports = {
           dark: "#4C0D1C",
         },
       },
+      dropShadow: {
+        bold: "3px 3px 2px rgba(0, 0, 0, .7)",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
