@@ -1,0 +1,22 @@
+{
+  "name": "43vysadkovypluk-cz",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/alpinejs": "^0.2.2",
+    "@astrojs/tailwind": "^4.0.0",
+    "@fontsource-variable/open-sans": "^5.0.6",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/alpinejs": "^3.0.0",
+    "alpinejs": "^3.0.0",
+    "astro": "^2.9.4",
+    "tailwindcss": "^3.0.24"
+  }
+}

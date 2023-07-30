@@ -1,0 +1,26 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<header class='overflow-y-hidden relative'>
+  <div
+    class='bg-cover bg-top flex content-center justify-around h-[32rem]'
+    style="background-image: url('images/homepage/intro.jpg'); transform: translate3d(0px, 0px, 0px);"
+  >
+    <img
+      src='images/logo/logo.svg'
+      class='w-52 relative top-12'
+      style='filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));'
+    />
+  </div>
+  <div
+    class='bg-black text-white w-full uppercase text-center py-4 bg-opacity-70 backdrop-filter backdrop-blur-sm absolute bottom-0 prose prose-invert max-w-none'
+    style='backdrop-filter: blur(2px);'
+  >
+    <h1 class='text-shadow'>{title}</h1>
+  </div>
+</header>

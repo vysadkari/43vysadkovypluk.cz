@@ -1,0 +1,23 @@
+---
+import "../tailwind.css";
+import "@fontsource-variable/open-sans";
+
+import Navbar from "../components/Navbar.astro";
+import Intro from "../components/Intro.astro";
+
+const { title } = Astro.props;
+---
+
+<html lang='cs'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='viewport' content='width=device-width' />
+    <title>{title}</title>
+  </head>
+  <body class='bg-pattern antialiased'>
+    <Navbar />
+    <Intro title={title} />
+    <slot />
+  </body>
+</html>
