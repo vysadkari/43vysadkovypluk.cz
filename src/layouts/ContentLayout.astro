@@ -4,6 +4,7 @@ import "@fontsource-variable/open-sans";
 
 import Navbar from "../components/Navbar.astro";
 import Intro from "../components/Intro.astro";
+import Footer from "../components/Footer.astro";
 
 const { title } = Astro.props;
 ---
@@ -19,5 +20,6 @@ const { title } = Astro.props;
     <Navbar />
     <Intro title={title} />
     <slot />
+    <Footer />
   </body>
 </html>
