@@ -18,6 +18,13 @@ module.exports = {
       dropShadow: {
         bold: "3px 3px 2px rgba(0, 0, 0, .7)",
       },
+      backgroundSize: {
+        "size-200": "200% 200%",
+      },
+      backgroundPosition: {
+        "pos-0": "0% 0%",
+        "pos-100": "100% 100%",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
