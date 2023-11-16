@@ -2,6 +2,7 @@
   "name": "43vysadkovypluk-cz",
   "type": "module",
   "version": "0.0.1",
+  "license": "CC-BY-NC-4.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.2.2",
+    "@astrojs/mdx": "^1.1.4",
     "@astrojs/tailwind": "^4.0.0",
     "@fontsource-variable/open-sans": "^5.0.6",
     "@tailwindcss/typography": "^0.5.9",

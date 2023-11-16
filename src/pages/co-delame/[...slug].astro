@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import { Image } from "astro:assets";
+
+export async function getStaticPaths() {
+  const missions = await getCollection('mission');
+
+  return missions.map(mission => ({
+    params: { slug: mission.slug }, props: { mission },
+  }));
+}
+
+const getPreviousMission = (missions: CollectionEntry<"mission">[], currentMission: CollectionEntry<"mission">) => {
+  const currentIndex = missions.findIndex(mission => mission.slug === currentMission.slug);
+  const previousIndex = currentIndex - 1;
+
+  if (previousIndex < 0) {
+    return missions[missions.length - 1];
+  }
+
+  return missions[previousIndex];
+}
+
+const getNextMission = (missions: CollectionEntry<"mission">[], currentMission: CollectionEntry<"mission">) => {
+  const currentIndex = missions.findIndex(mission => mission.slug === currentMission.slug);
+  const nextIndex = currentIndex + 1;
+
+  if (nextIndex >= missions.length) {
+    return missions[0];
+  }
+
+  return missions[nextIndex];
+}
+
+const { mission } = Astro.props;
+const { Content } = await mission.render();
+
+const missions = await getCollection('mission');
+missions.sort((a, b) => a.data.order - b.data.order);
+
+const prevMission = getPreviousMission(missions, mission);
+const nextMission = getNextMission(missions, mission);
+---
+
+<ContentLayout title={mission.data.title} image='/images/co-delame/intro.jpg'>
+  <section class='container container-shadow mx-auto bg-stone-900 p-5 relative overflow-hidden'>
+    <a class="absolute top-5 left-0 group hidden lg:block" href={`/co-delame/${prevMission.slug}`}>
+      <Image src={prevMission.data.image} alt={prevMission.data.title} class='rounded-lg border border-black drop-shadow-bold opacity-50 blur group-hover:blur-sm transition-all duration-150 -translate-x-1/2 scale-75' />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-white absolute left-5 top-1/2 my-auto -translate-y-1/2 bg-stone-900 rounded-full p-2 scale-100 group-hover:scale-105 transition-transform duration-150">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>      
+    </a>
+
+    <a class="absolute top-5 right-0 group hidden lg:block" href={`/co-delame/${nextMission.slug}`}>
+      <Image src={nextMission.data.image} alt={mission.data.title} class='rounded-lg border border-black drop-shadow-bold opacity-50 blur group-hover:blur-sm transition-all duration-150 translate-x-1/2 scale-75' />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-white absolute right-5 top-1/2 my-auto -translate-y-1/2 bg-stone-900 rounded-full p-2 scale-100 group-hover:scale-105 transition-transform duration-150">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>      
+    </a>
+
+    <article class="prose prose-invert prose-lg mx-auto">
+      <Image src={mission.data.image} alt={mission.data.title} class='mx-auto mb-5 rounded-lg border border-black drop-shadow-bold' />
+      <blockquote>{mission.data.description}</blockquote>
+      <Content />
+    </article>
+  </section>
+</ContentLayout> 
+```

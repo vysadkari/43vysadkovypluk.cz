@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content";
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Mission from "../components/Mission.astro";
+
+let missionItems = await getCollection("mission");
+missionItems = missionItems.sort((a, b) => a.data.order - b.data.order);
+---
+
+<ContentLayout title='Co děláme' image='/images/co-delame/intro.jpg'>
+    <section class='container container-shadow mx-auto bg-stone-900'>
+        <div class='grid grid-cols-1 lg:grid-cols-2 gap-5 p-5'>
+          {missionItems.map(item => <Mission mission={item} />)}
+        </div>
+      </section>
+</ContentLayout>
