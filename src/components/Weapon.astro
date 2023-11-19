@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+interface Props {
+  weapon: CollectionEntry<'weapons'>;
+}
+
+const { weapon } = Astro.props;
+---
+
+<a href={`/vyzbroj/${weapon.slug}`}>
+    <article class="group relative overflow-hidden rounded-lg drop-shadow-bold border border-black">
+        <Image src={weapon.data.image} alt={weapon.data.title} class="w-full" />
+        <div class="prose prose-invert bg-gradient-to-r from-primary to-primary-dark max-w-none inline-block absolute bottom-0 p-3 rounded-tr-lg drop-shadow-bold">
+            <h2 class="text-shadow">{weapon.data.title}</h2>
+        </div>
+    </article>
+</a>
