@@ -17,16 +17,18 @@ const { title, image, showLogo } = Astro.props;
       showLogo && (
         <img
           src='images/logo/logo.svg'
-          class='w-52 relative top-12'
+          class='w-52'
           style='filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));'
         />
       )
     }
   </div>
-  <div
-    class='bg-black text-white w-full uppercase text-center py-4 bg-opacity-70 backdrop-filter backdrop-blur-sm absolute bottom-0 prose prose-invert max-w-none'
-    style='backdrop-filter: blur(2px);'
-  >
-    <h1 class='text-shadow'>{title}</h1>
+  <div class="absolute bottom-0 bg-black bg-opacity-70 h-[72px] w-full" style='backdrop-filter: blur(2px);'></div>
+  <div class="container mx-auto absolute bottom-0 left-1/2 -translate-x-1/2 bg-stone-900 pt-5 bg-opacity-60 rounded-t-2xl drop-shadow-bold border-t border-stone-700" style='backdrop-filter: blur(2px);'>
+    <div
+      class='text-white w-full uppercase text-center py-4 prose prose-invert max-w-none'
+    >
+      <h1 class='text-shadow'>{title}</h1>
+    </div>
   </div>
 </header>
