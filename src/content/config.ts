@@ -23,7 +23,18 @@ const weaponsCollection = defineCollection({
     }),
 });
 
+const taskorgCollection = defineCollection({
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      symbol: image(),
+      image: image(),
+    }),
+});
+
 export const collections = {
   mission: missionCollection,
   weapons: weaponsCollection,
+  taskorg: taskorgCollection,
 };

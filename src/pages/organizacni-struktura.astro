@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+
+import k2 from "../content/taskorg/images/symbols/2k.svg";
+import k3 from "../content/taskorg/images/symbols/3k.svg";
+import k4 from "../content/taskorg/images/symbols/4k.svg";
+
+const vysadkovyPluk = await getEntry("taskorg", "43-vysadkovy-pluk");
+const veleniStabPluku = await getEntry("taskorg", "veleni-a-stab-pluku");
+const komanda = await getEntry("taskorg", "komanda");
+const komandoAz = await getEntry("taskorg", "komando-az");
+const strediskoZbrani = await getEntry("taskorg", "stredisko-zbrani");
+const strediskoBojovePodpory = await getEntry("taskorg", "stredisko-bojove-podpory");
+const strediskoZabezpeceniVeleni = await getEntry("taskorg", "stredisko-zabezpeceni-veleni");
+const strediskoLogistickehoZabezpeceni = await getEntry("taskorg", "stredisko-logistickeho-zabezpeceni");
+const strediskoBojovehoVycviku = await getEntry("taskorg", "stredisko-bojoveho-vycviku");
+const strediskoVysadkovePripravy = await getEntry("taskorg", "stredisko-vysadkove-pripravy");
+const zdravotnickyOdrad = await getEntry("taskorg", "zdravotnicky-odrad");
+---
+
+<script is:inline src="/assets/leaderLine/leaderLine.min.js"></script>
+
+<script is:inline>
+function drawLine(from, to, options = {}) {
+  var defaultOptions = {
+    color: '#333',
+    dropShadow: true
+  };
+  new LeaderLine(
+    document.getElementById(from),
+    document.getElementById(to),
+    {...defaultOptions, ...options}
+  );
+}
+
+function initStructure() {
+    drawLine('vysadkovy-pluk', 'veleni-a-stab-pluku', {
+        startSocket: 'right',
+        endSocket: 'left',
+        dash: true,
+    });
+    drawLine('veleni-a-stab-pluku', 'komanda', {startSocket: 'bottom', endSocket: 'top'});
+    drawLine('veleni-a-stab-pluku', 'komando-az', {startSocket: 'bottom', endSocket: 'top'});
+    drawLine('veleni-a-stab-pluku', 'stredisko-zbrani', {startSocket: 'bottom', endSocket: 'top'});
+    drawLine('veleni-a-stab-pluku', 'stredisko-bojove-podpory', {startSocket: 'bottom', endSocket: 'top'});
+    drawLine('veleni-a-stab-pluku', 'stredisko-zabezpeceni-veleni', {startSocket: 'bottom', endSocket: 'top'});
+    drawLine('veleni-a-stab-pluku', 'stredisko-logistickeho-zabezpeceni', {startSocket: 'bottom', endSocket: 'top'});
+    drawLine('veleni-a-stab-pluku', 'stredisko-bojoveho-vycviku', {startSocket: 'bottom', endSocket: 'top'});
+    drawLine('veleni-a-stab-pluku', 'stredisko-vysadkove-pripravy', {startSocket: 'bottom', endSocket: 'top'});
+    drawLine('veleni-a-stab-pluku', 'zdravotnicky-odrad', {startSocket: 'bottom', endSocket: 'top'});
+}
+
+document.addEventListener("astro:page-load", function() {
+    if(window.innerWidth > 1024) {
+        initStructure();
+    }
+});
+</script>
+
+<ContentLayout title='Organizační struktura' image='/images/organizacni-struktura/intro.jpg'>
+    <section class='container container-shadow mx-auto bg-stone-900 p-5 drop-shadow-bold'>
+        <div class="flex flex-col lg:flex-row justify-between items-center gap-20 lg:gap-0">
+            <a href={`/organizacni-struktura/${vysadkovyPluk.slug}`} class="flex flex-col items-center gap-2.5" id="vysadkovy-pluk">
+                <Image src={vysadkovyPluk.data.symbol} alt={vysadkovyPluk.data.title} class="w-64 drop-shadow-bold" />
+                <span class="text-white text-xl text-center">{vysadkovyPluk.data.title}</span>
+            </a>
+            <a href={`/organizacni-struktura/${veleniStabPluku.slug}`} class="flex flex-col items-center gap-2.5 pb-5" id="veleni-a-stab-pluku">
+                <Image src={veleniStabPluku.data.symbol} alt={veleniStabPluku.data.title} class="w-40 drop-shadow-bold border border-black" />
+                <span class="text-white text-xl text-center">{veleniStabPluku.data.title}</span>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-3 lg:grid-cols-9 mt-28 gap-5">
+            <a href={`/organizacni-struktura/${komanda.slug}`} class="flex flex-col items-center gap-2.5 pt-5" id="komanda">
+                <div class="grid grid-cols-5 gap-0">
+                    <Image src={komanda.data.symbol} alt="1. komando" class="drop-shadow-bold border border-black z-40 grid-area-[1_1_3_3] w-full" />
+                    <Image src={k2} alt="2. komando" class="drop-shadow-bold border border-black z-30 grid-area-[2_2_4_4] w-full" />
+                    <Image src={k3} alt="3. komando" class="drop-shadow-bold border border-black z-20 grid-area-[3_3_5_5] w-full" />
+                    <Image src={k4} alt="4. komando" class="drop-shadow-bold border border-black z-10 grid-area-[4_4_6_6] w-full" />
+                </div>
+                <span class="text-white text-center">{komanda.data.title}</span>
+            </a>
+            <a href={`/organizacni-struktura/${komandoAz.slug}`} class="flex flex-col items-center gap-2.5 pt-5" id="komando-az">
+                <Image src={komandoAz.data.symbol} alt={komandoAz.data.title} class="w-40 drop-shadow-bold border border-black" />
+                <span class="text-white text-center">{komandoAz.data.title}</span>
+            </a>
+            <a href={`/organizacni-struktura/${strediskoZbrani.slug}`} class="flex flex-col items-center gap-2.5 pt-5" id="stredisko-zbrani">
+                <Image src={strediskoZbrani.data.symbol} alt={strediskoZbrani.data.title} class="w-40 drop-shadow-bold border border-black" />
+                <span class="text-white text-center">{strediskoZbrani.data.title}</span>
+            </a>
+            <a href={`/organizacni-struktura/${strediskoBojovePodpory.slug}`} class="flex flex-col items-center gap-2.5 pt-5" id="stredisko-bojove-podpory">
+                <Image src={strediskoBojovePodpory.data.symbol} alt={strediskoBojovePodpory.data.title} class="w-40 drop-shadow-bold border border-black" />
+                <span class="text-white text-center">{strediskoBojovePodpory.data.title}</span>
+            </a>
+            <a href={`/organizacni-struktura/${strediskoZabezpeceniVeleni.slug}`} class="flex flex-col items-center gap-2.5 pt-5" id="stredisko-zabezpeceni-veleni">
+                <Image src={strediskoZabezpeceniVeleni.data.symbol} alt={strediskoZabezpeceniVeleni.data.title} class="w-40 drop-shadow-bold border border-black" />
+                <span class="text-white text-center">{strediskoZabezpeceniVeleni.data.title}</span>
+            </a>
+            <a href={`/organizacni-struktura/${strediskoLogistickehoZabezpeceni.slug}`} class="flex flex-col items-center gap-2.5 pt-5" id="stredisko-logistickeho-zabezpeceni">
+                <Image src={strediskoLogistickehoZabezpeceni.data.symbol} alt={strediskoLogistickehoZabezpeceni.data.title} class="w-40 drop-shadow-bold border border-black" />
+                <span class="text-white text-center">{strediskoLogistickehoZabezpeceni.data.title}</span>
+            </a>
+            <a href={`/organizacni-struktura/${strediskoBojovehoVycviku.slug}`} class="flex flex-col items-center gap-2.5 pt-5" id="stredisko-bojoveho-vycviku">
+                <Image src={strediskoBojovehoVycviku.data.symbol} alt={strediskoBojovehoVycviku.data.title} class="w-40 drop-shadow-bold border border-black" />
+                <span class="text-white text-center">{strediskoBojovehoVycviku.data.title}</span>
+            </a>
+            <a href={`/organizacni-struktura/${strediskoVysadkovePripravy.slug}`} class="flex flex-col items-center gap-2.5 pt-5" id="stredisko-vysadkove-pripravy">
+                <Image src={strediskoVysadkovePripravy.data.symbol} alt={strediskoVysadkovePripravy.data.title} class="w-40 drop-shadow-bold border border-black" />
+                <span class="text-white text-center">{strediskoVysadkovePripravy.data.title}</span>
+            </a>
+            <a href={`/organizacni-struktura/${zdravotnickyOdrad.slug}`} class="flex flex-col items-center gap-2.5 pt-5" id="zdravotnicky-odrad">
+                <Image src={zdravotnickyOdrad.data.symbol} alt={zdravotnickyOdrad.data.title} class="w-40 drop-shadow-bold border border-black" />
+                <span class="text-white text-center">{zdravotnickyOdrad.data.title}</span>
+            </a>
+        </div>
+      </section>
+</ContentLayout>

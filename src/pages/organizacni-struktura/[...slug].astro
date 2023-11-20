@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import { Image } from "astro:assets";
+
+export async function getStaticPaths() {
+  const taskorg = await getCollection('taskorg');
+
+  return taskorg.map(unit => ({
+    params: { slug: unit.slug }, props: { unit },
+  }));
+}
+
+const { unit } = Astro.props;
+const { Content } = await unit.render();
+---
+
+<ContentLayout title={unit.data.title} image='/images/vyzbroj/intro.jpg'>
+  <section class='container container-shadow mx-auto bg-stone-900 p-5 relative overflow-hidden'>
+    <Image src={unit.data.image} alt={unit.data.title} class="w-full rounded-lg drop-shadow-bold border border-black" />
+    <div class="prose prose-invert prose-lg mx-auto mt-5">
+      <Content />
+    </div>
+  </section>
+</ContentLayout>
