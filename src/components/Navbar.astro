@@ -1,5 +1,7 @@
 ---
 import menu from "../data/menu";
+
+const pathName = Astro.url.pathname;
 ---
 
 <div
@@ -52,7 +54,9 @@ import menu from "../data/menu";
           ) : (
             <>
               <a
-                class='hover:text-white transition duration-100 py-0 lg:py-5 text-gray-300 hover:underline hidden lg:inline'
+                class={`hover:text-white transition duration-100 py-0 lg:py-5 text-gray-300 hover:underline hidden lg:inline ${
+                  item.url && pathName.startsWith(item.url) ? "underline" : ""
+                }`}
                 style='text-underline-offset: -1.25rem !important;'
                 href={item.url}
               >
