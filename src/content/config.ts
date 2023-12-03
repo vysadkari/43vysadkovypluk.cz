@@ -1,4 +1,4 @@
-import { z, defineCollection } from "astro:content";
+import { z, defineCollection, reference } from "astro:content";
 
 const missionCollection = defineCollection({
   type: "content",
@@ -33,8 +33,25 @@ const taskorgCollection = defineCollection({
     }),
 });
 
+const positionsCollection = defineCollection({
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      image: image(),
+      cover: image(),
+      description: z.string(),
+      order: z.number(),
+      usedWeapons: z.array(reference("weapons")),
+      courses: z.array(z.string()),
+      rank: z.string(),
+      salary: z.string(),
+    }),
+});
+
 export const collections = {
   mission: missionCollection,
   weapons: weaponsCollection,
   taskorg: taskorgCollection,
+  positions: positionsCollection,
 };

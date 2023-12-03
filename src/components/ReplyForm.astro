@@ -1,0 +1,67 @@
+<form method='post'>
+  <div class='relative w-full'>
+    <div
+      class='absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-primary to-primary-dark via-primary-dark transform rotate-1 rounded-lg z-10'
+      style='filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));'
+    >
+    </div>
+
+    <div
+      class='bg-gradient-to-b lg:bg-gradient-to-r from-stone-900 to-black border border-black z-50 relative mx-5 lg:mx-10 rounded-lg p-5'
+      style='filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));'
+    >
+      <div class='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+        <input
+          id='contant_name'
+          class='p-2.5 bg-stone-700 placeholder-stone-400 rounded caret-stone-400 text-white'
+          type='text'
+          placeholder='Jméno a příjmení'
+          aria-label='Jméno a příjmení'
+          name='name'
+          required=''
+        />
+        <input
+          id='contact_tel'
+          class='p-2.5 bg-stone-700 placeholder-stone-400 rounded caret-stone-400 text-white'
+          type='tel'
+          placeholder='Telefon'
+          aria-label='Telefon'
+          name='tel'
+          required=''
+        />
+        <input
+          id='contact_email'
+          class='p-2.5 bg-stone-700 placeholder-stone-400 rounded caret-stone-400 text-white'
+          type='email'
+          placeholder='Email'
+          aria-label='Email'
+          name='email'
+          required=''
+        />
+        <textarea
+          id='contant_message'
+          class='col-span-1 lg:col-span-2 p-2.5 resize-none bg-stone-800 placeholder-stone-400 rounded caret-stone-400 text-white'
+          rows='3'
+          placeholder='Zpráva'
+          aria-label='Zpráva'
+          name='message'
+          spellcheck='false'
+          data-ms-editor='true'></textarea>
+        <button
+          class='btn-inset-primary py-3 px-10 border rounded transition-all duration-100 mb-0 bg-gradient-to-t from-primary-dark via-primary to-primary-light border-primary-light text-white flex flex-col flex-1 lg:flex-initial items-center bg-size-200 bg-pos-100 hover:bg-pos-0'
+          type='submit'
+          role='button'
+        >
+          <img
+            src='/images/logo/wings.svg'
+            class='w-auto h-14 mb-2'
+            style='filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));'
+          />
+          <span class='text-lg text-shadow-sm'
+            >Zahájit cestu k&nbsp;výsadkářům</span
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

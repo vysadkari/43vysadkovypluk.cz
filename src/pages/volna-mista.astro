@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content";
+
+import ContentLayout from "../layouts/ContentLayout.astro";
+import Position from "../components/Position.astro";
+
+let positions = await getCollection("positions");
+positions = positions.sort((a, b) => a.data.order - b.data.order);
+---
+
+<ContentLayout title='Volná místa' image='/images/volna-mista/intro.jpg'>
+    <section class='container container-shadow mx-auto bg-stone-900'>
+        <div class='grid grid-cols-1 lg:grid-cols-2 gap-5 p-5'>
+            {positions.map(position => <Position position={position} />)}
+          </div>
+    </section>
+</ContentLayout>

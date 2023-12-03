@@ -1,0 +1,173 @@
+---
+import { getCollection, getEntry } from "astro:content";
+
+import ContentLayout from "../../layouts/ContentLayout.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import ReplyForm from "../../components/ReplyForm.astro";
+import Map from "../../components/Map.astro";
+import { Image } from "astro:assets";
+import Weapon from "../../components/Weapon.astro";
+
+export async function getStaticPaths() {
+  const positions = await getCollection("positions");
+
+  return positions.map((position) => ({
+    params: { slug: position.slug },
+    props: { position },
+  }));
+}
+
+const { position } = Astro.props;
+const { Content } = await position.render();
+
+const mainWeapon = await getEntry("weapons", position.data.usedWeapons[0].slug);
+const secondaryWeapon = await getEntry(
+  "weapons",
+  position.data.usedWeapons[1].slug
+);
+---
+
+<script is:inline src='/assets/leaderLine/leaderLine.min.js'></script>
+
+<script is:inline>
+  function drawLine(from, to) {
+    var defaultOptions = {
+      color: "#A4082E",
+      dropShadow: true,
+    };
+    var nulledStyles = {
+      backgroundColor: null,
+      backgroundImage: null,
+      backgroundSize: null,
+      backgroundRepeat: null,
+      backgroundPosition: null,
+      cursor: null,
+      display: null,
+      paddingTop: null,
+      paddingRight: null,
+      paddingBottom: null,
+    };
+    new LeaderLine(
+      LeaderLine.mouseHoverAnchor(document.getElementById(from), "draw", {
+        style: nulledStyles,
+        hoverStyle: nulledStyles,
+      }),
+      document.getElementById(to),
+      { ...defaultOptions, ...{ startSocket: "bottom", endSocket: "top" } }
+    );
+    new LeaderLine(
+      LeaderLine.mouseHoverAnchor(document.getElementById(to), "draw", {
+        style: nulledStyles,
+        hoverStyle: nulledStyles,
+      }),
+      document.getElementById(from),
+      { ...defaultOptions, ...{ startSocket: "top", endSocket: "bottom" } }
+    );
+  }
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+    drawLine("label-chrudim", "marker-chrudim");
+  });
+</script>
+
+<ContentLayout
+  title={position.data.title}
+  image='/images/volna-mista/intro.jpg'
+>
+  <section
+    class='container container-shadow mx-auto bg-stone-900 p-5 relative overflow-hidden'
+  >
+    <Image
+      src={position.data.cover}
+      alt={position.data.title}
+      class='w-full rounded-lg drop-shadow-bold border border-black'
+    />
+    <article
+      class='prose prose-invert prose-2xl mx-auto lg:-mt-20 mb-5 bg-stone-900/80 backdrop-blur lg:border-t border-stone-700 p-5 rounded-t-lg text-shadow'
+    >
+      <div class='flex justify-between'>
+        <span class='bg-black p-2.5 text-base rounded-lg'
+          >{position.data.rank}</span
+        >
+        <span class='bg-black p-2.5 text-base rounded-lg'
+          >{position.data.salary}</span
+        >
+      </div>
+      <Content />
+    </article>
+
+    <SectionHeading title='Používané zbraně' />
+    <div class='grid grid-cols-1 lg:grid-cols-2 gap-5 pt-5 mb-5'>
+      <Weapon weapon={mainWeapon} />
+      <Weapon weapon={secondaryWeapon} />
+    </div>
+
+    <SectionHeading title='Kurzy' />
+    <div class='py-5 prose prose-invert prose-lg max-w-none'>
+      <ul
+        class='flex flex-col lg:flex-row list-none gap-2.5 w-full justify-center pl-0'
+      >
+        {
+          position.data.courses.map((course) => (
+            <li class='bg-black rounded-lg p-2.5 my-0 flex flex-row gap-2.5 divide-x divide-stone-700 items-center'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke-width='1.5'
+                stroke='currentColor'
+                class='w-6 h-6 mt-0'
+              >
+                <path
+                  stroke-linecap='round'
+                  stroke-linejoin='round'
+                  d='M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5'
+                />
+              </svg>
+
+              <span class='mb-0 pl-2.5'>{course}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <SectionHeading title='Kde budu sloužit?' />
+    <div class='prose prose-invert prose-xl mx-auto text-center py-5'>
+      <p>
+        Tvojí domovskou posádkou bude <span
+          class='bg-primary-dark hover:bg-primary transition-colors duration-150 p-1 rounded text-shadow font-semibold'
+          id='label-chrudim'>Chrudim</span
+        >.
+      </p>
+    </div>
+    <div class='w-full lg:w-1/2 mx-auto relative mb-5'>
+      <img
+        src='/images/logo/logo-round.svg'
+        class='absolute w-6 h-6 lg:h-10 lg:w-10 drop-shadow-bold left-[53%] top-[40%]'
+        id='marker-chrudim'
+      />
+      <Map />
+    </div>
+    <div
+      class='prose prose-invert text-sm mx-auto text-center text-stone-400 py-5'
+    >
+      <p>
+        Nicméně během své kariéry se podíváš i na další místa naší krásné země,
+        například na Doupov, Boletice, Březinu nebo Bílek.
+      </p>
+    </div>
+
+    <SectionHeading title='Mám zájem' />
+    <div class='my-10'>
+      <ReplyForm />
+      <div class='prose prose-invert prose-lg mt-10 max-w-none text-stone-300'>
+        <p>
+          Přihlášením to teprvé začíná. Stát se výsadkářem není krátká ani
+          snadná cesta, ale na začátku ti pomůžeme v naší aplikaci pro uchazeče,
+          do které budeš přesměrován.
+        </p>
+      </div>
+    </div>
+  </section>
+</ContentLayout>
