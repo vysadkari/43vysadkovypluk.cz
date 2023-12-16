@@ -1,0 +1,147 @@
+---
+import ContentLayout from "../layouts/ContentLayout.astro";
+
+import ReplyForm from "../components/ReplyForm.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Limits from "../components/Limits.astro";
+---
+
+<ContentLayout title='Kariéra' image='/images/kariera/intro.jpg'>
+  <section class='container container-shadow mx-auto bg-stone-900'>
+    <div
+      class='prose prose-invert prose-lg max-w-none text-center font-light py-5'
+    >
+      <p>
+        Oslovilo tě některé z našich <a
+          href='/volna-mista'
+          class='font-semibold text-primary hover:text-primary-light hover:underline transition-colors duration-150 no-underline'
+          >volných míst</a
+        >, nebo chceš prostě jenom změnu v kariéře? Přihlas se k nám!
+      </p>
+    </div>
+
+    <div class='mx-5'>
+      <ReplyForm />
+    </div>
+
+    <div
+      class='prose prose-invert prose-lg max-w-none text-center font-light py-5 text-sm'
+    >
+      <p>
+        Pokud tě zajímá něco jiného, kontaktuj nás na <a
+          href='mailto:info@43vysadkovypluk.cz'
+          class='font-semibold text-primary hover:text-primary-light no-underline hover:underline'
+          >info@<!-- -->43vysadkovypluk.cz</a
+        >
+         nebo telefon <a
+          href='tel:+420973248239'
+          class='font-semibold text-primary hover:text-primary-light no-underline hover:underline'
+          >973&nbsp;248&nbsp;239</a
+        >.
+      </p>
+    </div>
+
+    <a
+      class='block text-white p-5 mb-10 mt-5 mx-5 rounded-lg bg-gradient-to-r from-az-light via-az to-az text-shadow-sm text-lg text-center drop-shadow-bold'
+      href='https://az.43vysadkovypluk.cz/pridej-se'
+      target='_blank'
+    >
+      <p>
+        Chceš být ve své současné práci, ale i&nbsp;tak tě výsadkáři lákají?
+        Staň se naším <span class='font-semibold'>aktivním záložníkem</span>.
+      </p>
+    </a>
+
+    <SectionHeading title='Výběrové řízení' />
+
+    <div class='font-light text-xl prose prose-invert max-w-none p-5'>
+      <p>
+        Nevezmeme mezi sebe každého. Proto zájemci o&nbsp;službu musí projít
+        výběrovým řízením, které ukáže, jestli máš na to být výsadkářem.
+      </p>
+
+      <p>
+        Myslíš, že na to máš? Vyber své pohlaví a věkovou kategorii a zjistíš
+        limity pro fyzické přezkoušení.
+      </p>
+    </div>
+
+    <div class='px-5 mb-5'>
+      <Limits />
+    </div>
+
+    <div class='prose prose-invert max-w-none font-light text-xl p-5'>
+      <p>
+        Pro další informace, jako je popis průběhu nebo často kladené otázky,
+        pokračuj na stránku věnovanou přímo <a
+          href='/vyberove-rizeni'
+          class='font-semibold text-primary hover:text-primary-light hover:underline transition-colors duration-150 no-underline'
+          >výběrovému řízení</a
+        >.
+      </p>
+    </div>
+
+    <SectionHeading title='Co bude následovat?' />
+
+    <div class='text-xl font-light p-5 prose prose-invert max-w-none'>
+      <p>
+        Po odeslání kontaktního formuláře budeš přesměrován do naší <span
+          class='font-semibold'>Aplikace pro uchazeče</span
+        >, kde tě provedeme celým procesem, ať už chceš nastoupit z&nbsp;civilu
+        nebo máš zájem o&nbsp;změnu útvaru v&nbsp;rámci&nbsp;AČR.
+      </p>
+    </div>
+
+    <iframe
+      src='https://www.youtube-nocookie.com/embed/f-nHURcc1gU'
+      title='43. vp | Jak k výsadkářům?'
+      allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+      allowfullscreen
+      class='drop-shadow-bold aspect-video w-5/6 lg:w-2/3 mx-auto rounded-lg mb-5 border-t border-stone-700'
+    ></iframe>
+
+    <SectionHeading title='Jaké budu mít u vás zázemí?' />
+
+    <div class='grid grid-cols-1 lg:grid-cols-2 p-5 gap-5'>
+      <div
+        class='border-t border-stone-700 rounded-lg bg-stone-950 prose prose-invert p-2.5 max-w-none'
+      >
+        <h3>Doprava</h3>
+        <p>
+          V Chrudimi je jak autobusové, tak vlakové nádraží, které je od kasáren
+          vzdáleno necelé dva kilometry pěšky.
+        </p>
+      </div>
+      <div
+        class='border-t border-stone-700 rounded-lg bg-stone-950 prose prose-invert p-2.5 max-w-none'
+      >
+        <h3>Parkování</h3>
+        <p>
+          Parkoviště máme hned vedle kasáren. Prostor ale není nafukovací, tak
+          zvaž, jestli se nedomluvíš s dalšími nováčky nebo příslušníky na
+          spolujízdě v jednom autě.
+        </p>
+      </div>
+      <div
+        class='border-t border-stone-700 rounded-lg bg-stone-950 prose prose-invert p-2.5 max-w-none'
+      >
+        <h3>Ubytování</h3>
+        <p>
+          Bydlení přímo na kasárnách není možné. Nicméně hodně našich
+          příslušníků využívá podnájmů v Chrudimi či okolí, nebo do začátku
+          vojenskou ubytovnu v Pardubicích.
+        </p>
+      </div>
+      <div
+        class='border-t border-stone-700 rounded-lg bg-stone-950 prose prose-invert p-2.5 max-w-none'
+      >
+        <h3>Strava</h3>
+        <p>
+          Přímo v areálu máme jídelnu, kde si každý den můžeš vybrat z několika
+          jídel. A až se poprvé sneseš na padáku a budeš mít červený baret,
+          obědy budeš mít zdarma.
+        </p>
+      </div>
+    </div>
+  </section>
+</ContentLayout>

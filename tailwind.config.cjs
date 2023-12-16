@@ -15,6 +15,13 @@ module.exports = {
           light: "#D50A3C",
           dark: "#4C0D1C",
         },
+        az: {
+          DEFAULT: "#304e12",
+          light: "#4a771c",
+        },
+        stone: {
+          950: "#0c0a09",
+        },
       },
       dropShadow: {
         bold: "3px 3px 2px rgba(0, 0, 0, .7)",
