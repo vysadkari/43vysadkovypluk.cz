@@ -1,0 +1,247 @@
+---
+import ContentLayout from "../layouts/ContentLayout.astro";
+
+import { Image } from "astro:assets";
+import SectionHeading from "../components/SectionHeading.astro";
+import Limits from "../components/Limits.astro";
+
+import faq from "../data/faq";
+
+import fyzickePrezkouseni from "../content/selection/images/fyzicke-prezkouseni.jpg";
+import prekazkovaDraha from "../content/selection/images/prekazkova-draha.jpg";
+import buddyRun from "../content/selection/images/buddy-run.jpg";
+import plavani from "../content/selection/images/plavani.jpg";
+import behSKladou from "../content/selection/images/beh-s-kladou.jpg";
+import prekazkovaDrahaKlada from "../content/selection/images/prekazkova-draha-klada.jpg";
+import zrychlenyPresun from "../content/selection/images/zrychleny-presun.jpg";
+import pohovorSPsychology from "../content/selection/images/pohovor-s-psychology.jpg";
+import pochod from "../content/selection/images/pochod.jpg";
+import pochod2 from "../content/selection/images/pochod-2.jpg";
+import nositka from "../content/selection/images/nositka.jpg";
+import zaver from "../content/selection/images/zaver.jpg";
+---
+
+<ContentLayout
+  title='Výběrové řízení'
+  image='/images/vyberove-rizeni/intro.jpg'
+>
+  <section class='container container-shadow mx-auto bg-stone-900'>
+    <div class='p-5 text-center'>
+      <span class='text-3xl text-stone-500 text-shadow'
+        >Termíny výběrového řízení budou teprve vypsány.</span
+      >
+    </div>
+
+    <SectionHeading title='Limity fyzického přezkoušení' />
+
+    <div class='font-light text-xl prose prose-invert max-w-none p-5'>
+      <p>
+        Fyzické přezkoušení je první síto, které vyřazuje velkou část uchazečů
+        hned na začátku výběrového řízení. Nepodceň přípravu, trénuj dlouho a
+        pravidelně, jinak pojedeš obratem domů.
+      </p>
+    </div>
+
+    <div class='px-5 mb-5'>
+      <Limits />
+    </div>
+
+    <SectionHeading title='Průběh výběrového řízení' />
+
+    <div
+      class='prose prose-invert prose-xl prose-img:my-0 font-light max-w-none p-5'
+    >
+      <p>
+        První <span class='text-stone-500'
+          >(a pro mnohé bohužel i poslední)</span
+        > disciplínou je <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >fyzické přezkoušení</span
+        >, kde prověříme tvoji fyzičku. Jestli nezvládneš tohle, jedeš domů
+        rovnou ze startu.
+      </p>
+
+      <p>
+        Ti, co se připravili, pokračují na letiště na naši <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >překážkovou dráhu</span
+        > a zajímá nás, jestli netrpíš strachem z výšek. Stejně tak nás zajímá,
+        jak si povedeš ve dvojici u <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >buddy runu</span
+        >, kdy si to jenom ty a tvůj parťák.
+      </p>
+
+      <p>
+        Brnkačka? Tak si jdeme <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >zaplavat</span
+        >. Skáčeme také do vody a potřebujeme vědět, že se neutopíš. Plavat
+        můžeš libovolným plaveckým stylem, ať už jsou to prsa, kraul nebo
+        motýlek. V případě, že bude bazén z jakéhokoliv důvodu zavřený, bude
+        náhradní disciplína modifikovaný <span class='font-semibold'
+          >Jacíkův test</span
+        >.
+      </p>
+
+      <p>
+        Závěrem prvního dne si tě ještě proklepnou <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >psychologové</span
+        > a pak si můžeš jít užít pár hodin spánku.
+      </p>
+
+      <div class='grid grid-cols-2 lg:grid-cols-4 gap-5'>
+        <Image
+          src={fyzickePrezkouseni}
+          alt='Fyzické přezkoušení'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+        <Image
+          src={prekazkovaDraha}
+          alt='Překážková dráha'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+        <Image
+          src={buddyRun}
+          alt='Buddy run'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+        <Image
+          src={plavani}
+          alt='Plavání'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+      </div>
+
+      <p>
+        Druhý den je zaměřen hlavně na tvoji schopnost pracovat v týmu. Říká se,
+        že nejlíp se člověk seznámí při <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >běhu s kládou</span
+        >, takže jednu dostanete a budete se o ni celých 5 km starat.
+      </p>
+
+      <p>
+        Ani poté se ale svojí nové dřevěné kamarádky nezbavíte a projdete s ní
+        ještě společně <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >překážkovou dráhu</span
+        >, kterou sis sám proběhl už předchozí den.
+      </p>
+
+      <p>
+        Královská disciplína! Zde se často láme chleba. Plných <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+        >
+          10 km zrychleného přesunu
+        </span>, se zátěží, v družstvu a pod drobnohledem našich insturktorů.
+      </p>
+
+      <p>
+        Pořád držíš? Nejen po fyzické, ale také po psychické stránce? To ještě
+        jednou ověří <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >pohovor s psychology</span
+        >.
+      </p>
+
+      <p>
+        Ošetři puchýře, najez se, připrav si materiál a snaž se využít každé
+        minuty spánku. Sice jsi za půlkou, ale do cíle je ještě cesta dlouhá.
+      </p>
+
+      <div class='grid grid-cols-2 lg:grid-cols-4 gap-5'>
+        <Image
+          src={behSKladou}
+          alt='Běh s kládou'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+        <Image
+          src={prekazkovaDrahaKlada}
+          alt='Překážková dráha s kládou'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+        <Image
+          src={zrychlenyPresun}
+          alt='Zrychlený přesun'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+        <Image
+          src={pohovorSPsychology}
+          alt='Pohovor s psychology'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+      </div>
+
+      <p>
+        Opravdu dlouhá. Poslední den totiž zahájíš <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >35 km pochodem se zátěží</span
+        >, bez družstva, zato s naloženým batohem a hlavou plnou myšlenek na
+        svoji budoucnost u výsadkářů.
+      </p>
+
+      <p>
+        Fyzicky už toho máš za sebou hodně, ale pořád je potřeba, aby fungovala
+        i tvoje hlava. Po dokončení pochodu tedy sepíšeš <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >esej</span
+        > na zadané téma.
+      </p>
+
+      <p>
+        A u psychické stránky výběrového řízení ještě chvíli zůstaneme v rámci
+        <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >pohovoru s psychology</span
+        >. Ti s tebou projdou výsledky testů a zhodnotí, jestli jsi mentálně
+        připravený stát se výsadkářem.
+      </p>
+
+      <p>
+        Konečně cílová rovinka! Tři dny fyzického a psychického vyčerpání,
+        minima spánku a přesto ještě poslední úkol - <span
+          class='bg-primary-dark hover:bg-primary text-white px-1 rounded text-shadow font-semibold transition-colors duration-150'
+          >běh s nosítky</span
+        >. Zatni zuby, seber poslední zbytky sil a ukaž, že si zasloužíš nosit
+        výsadkářskou nášivku!
+      </p>
+
+      <div class='grid grid-cols-2 lg:grid-cols-4 gap-5'>
+        <Image
+          src={pochod}
+          alt='Pochod'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+        <Image
+          src={pochod2}
+          alt='Pochod'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+        <Image
+          src={nositka}
+          alt='Běh s nosítky'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+        <Image
+          src={zaver}
+          alt='Závěr'
+          class='rounded-lg drop-shadow-bold transform hover:rotate-2 transition-all duration-150'
+        />
+      </div>
+    </div>
+    <SectionHeading title='Často kladené otázky' />
+
+    <div class='grid grid-cols-1 lg:grid-cols-2 p-5 gap-5'>
+      {
+        faq.map((item) => (
+          <div class='border-t border-stone-700 rounded-lg bg-stone-950 prose prose-invert p-2.5 max-w-none'>
+            <h3 class='text-xl font-semibold'>{item.question}</h3>
+            <p>{item.answer}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</ContentLayout>
