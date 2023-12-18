@@ -28,10 +28,6 @@ import zaver from "../content/selection/images/zaver.jpg";
   const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
   let selectionApiUrl = apiBaseUrl + "/selection";
 
-  axios.get(selectionApiUrl).then((response) => {
-    console.log(response.data);
-  });
-
   const initSelectionDates = () => {
     return {
       isLoading: true,
