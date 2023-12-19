@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - test
+
+name: ✈️ Cvičné vysazení
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Stažení aktuálního kódu
+        uses: actions/checkout@v3
+
+      - name: 🛫 Instalace závislostí
+        run: yarn install
+
+      - name: 📦 Sestavení aplikace
+        run: yarn build
+
+      - name: 🪂 Nahrání souborů na FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST}}
+          username: ${{ secrets.FTP_USERNAME}}
+          password: ${{ secrets.FTP_PASSWORD}}
+          port: ${{ secrets.FTP_PORT}}
+          server-dir: test/public/
+          local-dir: dist/
+          state-name: ../.ftp-deploy-sync-state.json
+
+      - name: 🛬 Konec mise
+        run: echo "Bez závad"
