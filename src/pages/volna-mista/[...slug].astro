@@ -27,49 +27,6 @@ const secondaryWeapon = await getEntry(
 );
 ---
 
-<script is:inline src='/assets/leaderLine/leaderLine.min.js'></script>
-
-<script is:inline>
-  function drawLine(from, to) {
-    var defaultOptions = {
-      color: "#A4082E",
-      dropShadow: true,
-    };
-    var nulledStyles = {
-      backgroundColor: null,
-      backgroundImage: null,
-      backgroundSize: null,
-      backgroundRepeat: null,
-      backgroundPosition: null,
-      cursor: null,
-      display: null,
-      paddingTop: null,
-      paddingRight: null,
-      paddingBottom: null,
-    };
-    new LeaderLine(
-      LeaderLine.mouseHoverAnchor(document.getElementById(from), "draw", {
-        style: nulledStyles,
-        hoverStyle: nulledStyles,
-      }),
-      document.getElementById(to),
-      { ...defaultOptions, ...{ startSocket: "bottom", endSocket: "top" } }
-    );
-    new LeaderLine(
-      LeaderLine.mouseHoverAnchor(document.getElementById(to), "draw", {
-        style: nulledStyles,
-        hoverStyle: nulledStyles,
-      }),
-      document.getElementById(from),
-      { ...defaultOptions, ...{ startSocket: "top", endSocket: "bottom" } }
-    );
-  }
-
-  document.addEventListener("DOMContentLoaded", function (event) {
-    drawLine("label-chrudim", "marker-chrudim");
-  });
-</script>
-
 <ContentLayout
   title={position.data.title}
   image='/images/volna-mista/intro.jpg'
