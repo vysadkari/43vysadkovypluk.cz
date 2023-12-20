@@ -22,5 +22,5 @@ jobs:
         run: |
           git fetch origin
           git checkout test
-          git merge --no-ff "${{ github.ref }}"
+          git merge --no-ff "${{ github.ref }}" --allow-unrelated-histories
           git push origin test
