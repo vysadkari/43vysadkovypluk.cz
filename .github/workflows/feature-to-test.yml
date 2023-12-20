@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - "feature/*"
+
+name: 🧪 Nasazení feature na testovací prostředí
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Stažení aktuálního kódu
+        uses: actions/checkout@v3
+
+      - name: 🛫 Instalace závislostí
+        run: yarn install
+
+      - name: 📦 Sestavení aplikace
+        run: yarn build
+
+      - name: ⏩ Merge do testu
+        run: |
+          git checkout test
+          git merge --no-ff "${{ github.ref }}"
+          git push origin test
