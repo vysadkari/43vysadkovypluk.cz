@@ -20,7 +20,8 @@ jobs:
 
       - name: ⏩ Merge do testu
         run: |
-          git fetch origin
-          git checkout test
-          git merge --no-ff "${{ github.ref }}" --allow-unrelated-histories
+          AUTHOR_NAME=$(git log -1 --pretty=format:'%an')
+          AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
+          git merge --no-ff "${{ github.ref }}" --allow-unrelated-histories || echo "Merge conflict occurred"
+          git commit --author="$AUTHOR_NAME <$AUTHOR_EMAIL>" -m "Merge ${GITHUB_REF#refs/heads/} into test"
           git push origin test
