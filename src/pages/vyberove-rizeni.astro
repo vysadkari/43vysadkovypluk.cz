@@ -160,7 +160,7 @@ import zaver from "../content/selection/images/zaver.jpg";
     >
       <div>
         <span
-          class='text-3xl text-stone-500 text-shadow bg-stone-800 inline-block w-96 rounded-lg animate-pulse'
+          class='text-3xl text-stone-500 text-shadow bg-stone-800 inline-block w-full max-w-sm rounded-lg animate-pulse'
           x-show='isLoading'>&nbsp;</span
         >
         <span
@@ -180,7 +180,7 @@ import zaver from "../content/selection/images/zaver.jpg";
       </div>
 
       <div
-        class='grid grid-cols-4 w-96 mx-auto mt-5 gap-5'
+        class='grid grid-cols-4 max-w-sm mx-auto mt-5 gap-5'
         x-show='showCountdown'
         x-cloak
       >
@@ -188,7 +188,7 @@ import zaver from "../content/selection/images/zaver.jpg";
           class='flex flex-col bg-stone-950 divide-y divide-dotted divide-stone-700 p-2.5 rounded-lg drop-shadow-bold border-t border-stone-700'
         >
           <span
-            class='text-white text-4xl pb-2.5 text-shadow'
+            class='text-white text-3xl lg:text-4xl pb-2.5 text-shadow'
             x-text='time().days'></span>
           <span class='text-stone-400 pt-2.5 text-shadow'>dní</span>
         </div>
@@ -196,7 +196,7 @@ import zaver from "../content/selection/images/zaver.jpg";
           class='flex flex-col bg-stone-950 divide-y divide-dotted divide-stone-700 p-2.5 rounded-lg drop-shadow-bold border-t border-stone-700'
         >
           <span
-            class='text-white text-4xl pb-2.5 text-shadow'
+            class='text-white text-3xl lg:text-4xl pb-2.5 text-shadow'
             x-text='time().hours'></span>
           <span class='text-stone-400 pt-2.5 text-shadow'>hodin</span>
         </div>
@@ -204,7 +204,7 @@ import zaver from "../content/selection/images/zaver.jpg";
           class='flex flex-col bg-stone-950 divide-y divide-dotted divide-stone-700 p-2.5 rounded-lg drop-shadow-bold border-t border-stone-700'
         >
           <span
-            class='text-white text-4xl pb-2.5 text-shadow'
+            class='text-white text-3xl lg:text-4xl pb-2.5 text-shadow'
             x-text='time().minutes'></span>
           <span class='text-stone-400 pt-2.5 text-shadow'>minut</span>
         </div>
@@ -212,7 +212,7 @@ import zaver from "../content/selection/images/zaver.jpg";
           class='flex flex-col bg-stone-950 divide-y divide-dotted divide-stone-700 p-2.5 rounded-lg drop-shadow-bold border-t border-stone-700'
         >
           <span
-            class='text-white text-4xl pb-2.5 text-shadow'
+            class='text-white text-3xl lg:text-4xl pb-2.5 text-shadow'
             x-text='time().seconds'></span>
           <span class='text-stone-400 pt-2.5 text-shadow'>vteřin</span>
         </div>
