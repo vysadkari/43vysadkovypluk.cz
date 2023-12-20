@@ -20,6 +20,7 @@ jobs:
 
       - name: ⏩ Merge do testu
         run: |
+          git fetch origin
           git checkout test
           git merge --no-ff "${{ github.ref }}"
           git push origin test
