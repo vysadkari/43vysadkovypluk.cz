@@ -15,6 +15,9 @@ jobs:
       - name: 🛫 Instalace závislostí
         run: yarn install
 
+      - name: ⚙️ Vytvoření .env souboru
+        run: cp .env.example .env
+
       - name: 📦 Sestavení aplikace
         run: yarn build
 
