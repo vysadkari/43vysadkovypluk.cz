@@ -10,7 +10,9 @@ const { title, image, showLogo } = Astro.props;
 
 <header class='overflow-y-hidden relative'>
   <div
-    class='bg-cover bg-top flex content-center justify-around h-[32rem]'
+    class={`bg-cover bg-top flex content-center justify-around ${
+      showLogo ? "h-[32rem]" : "h-[24rem] lg:h-[32rem]"
+    }`}
     style={`background-image: url('${image}'); transform: translate3d(0px, 0px, 0px);`}
   >
     {
@@ -23,8 +25,15 @@ const { title, image, showLogo } = Astro.props;
       )
     }
   </div>
-  <div class="absolute bottom-0 bg-black bg-opacity-70 h-[72px] w-full" style='backdrop-filter: blur(2px);'></div>
-  <div class="container mx-auto absolute bottom-0 left-1/2 -translate-x-1/2 bg-stone-900 pt-5 bg-opacity-60 rounded-t-2xl drop-shadow-bold border-t border-stone-700" style='backdrop-filter: blur(2px);'>
+  <div
+    class='absolute bottom-0 bg-black bg-opacity-70 h-[72px] w-full'
+    style='backdrop-filter: blur(2px);'
+  >
+  </div>
+  <div
+    class='container mx-auto absolute bottom-0 left-1/2 -translate-x-1/2 bg-stone-900 pt-5 bg-opacity-60 rounded-t-2xl drop-shadow-bold border-t border-stone-700'
+    style='backdrop-filter: blur(2px);'
+  >
     <div
       class='text-white w-full uppercase text-center py-4 prose prose-invert max-w-none'
     >
