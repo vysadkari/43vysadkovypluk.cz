@@ -1,0 +1,30 @@
+on:
+  push:
+    branches:
+      - "feature/*"
+
+name: 🧪 Nasazení feature na testovací prostředí
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Stažení aktuálního kódu
+        uses: actions/checkout@v3
+
+      - name: 🛫 Instalace závislostí
+        run: yarn install
+
+      - name: 📦 Sestavení aplikace
+        run: yarn build
+
+      - name: ⏩ Merge do testu
+        run: |
+          AUTHOR_NAME=$(git log -1 --pretty=format:'%an')
+          AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
+          git fetch origin
+          git checkout test
+          git config user.name "$AUTHOR_NAME"
+          git config user.email "$AUTHOR_EMAIL"
+          git merge --no-ff "${{ github.ref }}" --allow-unrelated-histories
+          git push origin test
