@@ -1,55 +1,169 @@
-<form method='post'>
+<script>
+  import Alpine from "alpinejs";
+  import axios from "axios";
+
+  const apiBaseUrl = import.meta.env.PUBLIC_API_BASE_URL;
+  let candidateApiUrl = apiBaseUrl + "/candidate";
+
+  const initReplyForm = () => {
+    return {
+      formData: {
+        name: "",
+        phoneNumber: "",
+        email: "",
+        message: "",
+      },
+      submitting: false,
+      submitted: false,
+      hasError: false,
+      errorMessage: "",
+      submitForm: function () {
+        this.submitting = true;
+        axios
+          .post(candidateApiUrl, this.formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            this.submitted = true;
+            this.submitting = false;
+          })
+          .catch((error) => {
+            this.hasError = true;
+            this.submitted = true;
+            this.submitting = false;
+            this.errorMessage = error.response.data.message;
+            console.log(error);
+          });
+      },
+      reset: function () {
+        this.submitting = false;
+        this.submitted = false;
+        this.hasError = false;
+        this.errorMessage = "";
+      },
+    };
+  };
+
+  Alpine.data("replyForm", initReplyForm);
+</script>
+
+<form x-data='replyForm' @submit.prevent='submitForm'>
   <div class='relative w-full'>
     <div
-      class='absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-primary to-primary-dark via-primary-dark transform rotate-1 rounded-lg z-10'
-      style='filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));'
+      class='absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-primary to-primary-dark via-primary-dark transform rotate-1 rounded-lg z-10 drop-shadow-bold'
     >
     </div>
 
     <div
-      class='bg-gradient-to-b lg:bg-gradient-to-r from-stone-900 to-black border border-black z-20 relative mx-5 lg:mx-10 rounded-lg p-5'
-      style='filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));'
+      class='bg-gradient-to-b lg:bg-gradient-to-r from-stone-900 to-black border border-black z-20 relative mx-5 lg:mx-10 rounded-lg p-5 drop-shadow-bold'
     >
-      <div class='grid grid-cols-1 lg:grid-cols-3 gap-5'>
+      <div class='absolute inset-0 opacity-5 z-20' x-show='submitting' x-cloak>
+      </div>
+
+      <div
+        class='absolute inset-0 grid place-items-center z-20'
+        x-show='submitted && !hasError'
+        x-transition.duration.1000ms
+        x-cloak
+      >
+        <div class='text-center text-stone-400 flex flex-col gap-5 p-5 z-20'>
+          <img
+            src='/images/logo/wings.svg'
+            class='w-auto h-10 mb-2'
+            style='filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7));'
+            alt='Výsadkářská křídla'
+          />
+          <span class='text-2xl font-semibold text-shadow text-white'
+            >Tvoje cesta k výsadkářům právě začíná.</span
+          >
+          <span class='text-xl'>Více informací najdeš v emailu.</span>
+        </div>
+      </div>
+
+      <div
+        class='absolute inset-0 grid place-items-center z-20'
+        x-show='submitted && hasError'
+        x-transition:enter.duration.1000ms
+        x-transition:leave.duration.0ms
+        x-cloak
+      >
+        <div class='items-center text-stone-400 flex flex-col gap-5 p-5 z-20'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='1.5'
+            stroke='currentColor'
+            class='w-10 h-10'
+          >
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z'
+            ></path>
+          </svg>
+
+          <span class='text-2xl font-semibold text-shadow text-white'
+            >Při odeslání formuláře došlo k chybě</span
+          >
+          <span class='text-xl'>
+            <span x-text='errorMessage' class='font-semibold'></span><span
+              >, tak to <span @click='reset' class='underline cursor-pointer'
+                >zkus ještě jednou</span
+              >.</span
+            >
+          </span>
+        </div>
+      </div>
+
+      <div class='grid grid-cols-1 lg:grid-cols-3 gap-5 z-10'>
         <input
-          id='contant_name'
-          class='p-2.5 bg-stone-700 placeholder-stone-400 rounded caret-stone-400 text-white'
+          class='p-2.5 bg-stone-700 placeholder-stone-400 rounded caret-stone-400 text-white disabled:opacity-50 transition-opacity duration-200'
+          :class='{"!opacity-0": submitted}'
           type='text'
           placeholder='Jméno a příjmení'
           aria-label='Jméno a příjmení'
           name='name'
-          required=''
+          x-model='formData.name'
+          x-bind:disabled='submitting'
         />
         <input
-          id='contact_tel'
-          class='p-2.5 bg-stone-700 placeholder-stone-400 rounded caret-stone-400 text-white'
+          class='p-2.5 bg-stone-700 placeholder-stone-400 rounded caret-stone-400 text-white disabled:opacity-50 transition-opacity duration-200'
+          :class='{"!opacity-0": submitted}'
           type='tel'
           placeholder='Telefon'
           aria-label='Telefon'
-          name='tel'
-          required=''
+          name='phoneNumber'
+          x-model='formData.phoneNumber'
+          x-bind:disabled='submitting'
         />
         <input
-          id='contact_email'
-          class='p-2.5 bg-stone-700 placeholder-stone-400 rounded caret-stone-400 text-white'
+          class='p-2.5 bg-stone-700 placeholder-stone-400 rounded caret-stone-400 text-white disabled:opacity-50 transition-opacity duration-200'
+          :class='{"!opacity-0": submitted}'
           type='email'
           placeholder='Email'
           aria-label='Email'
           name='email'
-          required=''
+          x-model='formData.email'
+          x-bind:disabled='submitting'
         />
         <textarea
-          id='contant_message'
-          class='col-span-1 lg:col-span-2 p-2.5 resize-none bg-stone-800 placeholder-stone-400 rounded caret-stone-400 text-white'
+          class='col-span-1 lg:col-span-2 p-2.5 resize-none bg-stone-800 placeholder-stone-400 rounded caret-stone-400 text-white disabled:opacity-50 transition-opacity duration-200'
+          :class='{"!opacity-0": submitted}'
           rows='3'
           placeholder='Zpráva'
           aria-label='Zpráva'
           name='message'
           spellcheck='false'
-          data-ms-editor='true'></textarea>
+          x-model='formData.message'
+          x-bind:disabled='submitting'></textarea>
         <button
-          class='btn-inset-primary py-3 px-10 border rounded transition-all duration-100 mb-0 bg-gradient-to-t from-primary-dark via-primary to-primary-light border-primary-light text-white flex flex-col flex-1 lg:flex-initial items-center bg-size-200 bg-pos-100 hover:bg-pos-0'
+          class='btn-inset-primary py-3 px-10 border rounded transition-all duration-200 mb-0 bg-gradient-to-t from-primary-dark via-primary to-primary-light border-primary-light text-white flex flex-col flex-1 lg:flex-initial items-center bg-size-200 bg-pos-100 hover:bg-pos-0 disabled:opacity-50'
+          :class='{"!opacity-0": submitted}'
           type='submit'
+          x-bind:disabled='submitting'
         >
           <img
             src='/images/logo/wings.svg'
