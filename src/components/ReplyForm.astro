@@ -16,7 +16,7 @@
       submitting: false,
       submitted: false,
       hasError: false,
-      errorMessage: "",
+      errorMessage: "Něco se pokazilo",
       submitForm: function () {
         this.submitting = true;
         axios
@@ -33,7 +33,8 @@
             this.hasError = true;
             this.submitted = true;
             this.submitting = false;
-            this.errorMessage = error.response.data.message;
+            this.errorMessage =
+              error.response.data.message || "Něco se pokazilo";
             console.log(error);
           });
       },
@@ -41,7 +42,7 @@
         this.submitting = false;
         this.submitted = false;
         this.hasError = false;
-        this.errorMessage = "";
+        this.errorMessage = "Něco se pokazilo";
       },
     };
   };
