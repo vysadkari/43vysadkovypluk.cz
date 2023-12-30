@@ -1,38 +1,81 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 import ContentLayout from "../../layouts/ContentLayout.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import Position from "../../components/Position.astro";
 import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
-  const weapons = await getCollection('weapons');
+  const weapons = await getCollection("weapons");
 
-  return weapons.map(weapon => ({
-    params: { slug: weapon.slug }, props: { weapon },
+  return weapons.map((weapon) => ({
+    params: { slug: weapon.slug },
+    props: { weapon },
   }));
 }
 
 const { weapon } = Astro.props;
 const { Content } = await weapon.render();
+
+let relatedPositions = [];
+if (weapon.data.relatedPositions) {
+  for (let i = 0; i < weapon.data.relatedPositions.length; i++) {
+    let positionCollection = weapon.data.relatedPositions[i].collection;
+    let positionSlug = weapon.data.relatedPositions[i].slug;
+    let position = await getEntry(positionCollection, positionSlug);
+    relatedPositions.push(position);
+  }
+}
 ---
 
 <ContentLayout title={weapon.data.title} image='/images/vyzbroj/intro.jpg'>
-  <section class='container container-shadow mx-auto bg-stone-900 p-5 relative overflow-hidden'>
-    <article class="prose prose-invert prose-xl mx-auto grid grid-cols-1 lg:grid-cols-2 max-w-none gap-5 prose-p:first:mt-0">
+  <section
+    class='container container-shadow mx-auto bg-stone-900 p-5 relative overflow-hidden'
+  >
+    <article
+      class={`prose prose-invert prose-xl mx-auto grid grid-cols-1 lg:grid-cols-2 max-w-none gap-5 prose-p:first:mt-0 ${
+        relatedPositions.length > 0 ? "mb-5" : ""
+      }`}
+    >
       <div>
-        <Image src={weapon.data.image} alt={weapon.data.title} class='mx-auto rounded-t-lg border border-black drop-shadow-bold w-full my-0' />
-        <div class="flex flex-row justify-between bg-black rounded-b-lg drop-shadow-bold p-2.5 text-sm">
-          {weapon.data.ttd.map(item => {
-            const [key, value] = Object.entries(item)[0];
-            return (
-              <div class="flex flex-row gap-2"><span class="font-semibold">{key}:</span> <span>{value}</span></div>
-            );
-          })}
+        <Image
+          src={weapon.data.image}
+          alt={weapon.data.title}
+          class='mx-auto rounded-t-lg border border-black drop-shadow-bold w-full my-0'
+        />
+        <div
+          class='flex flex-row justify-between bg-black rounded-b-lg drop-shadow-bold p-2.5 text-sm'
+        >
+          {
+            weapon.data.ttd.map((item) => {
+              const [key, value] = Object.entries(item)[0];
+              return (
+                <div class='flex flex-row gap-2'>
+                  <span class='font-semibold'>{key}:</span> <span>{value}</span>
+                </div>
+              );
+            })
+          }
         </div>
       </div>
       <div>
         <Content />
       </div>
     </article>
+
+    {
+      relatedPositions.length > 0 && (
+        <>
+          <SectionHeading title='Pozice s touto zbraní' />
+          <div class='grid grid-cols-1 lg:grid-cols-3 gap-5 mt-5'>
+            {relatedPositions &&
+              relatedPositions.map((position) => (
+                <Position position={position} />
+              ))}
+          </div>
+        </>
+      )
+    }
   </section>
-</ContentLayout> 
+</ContentLayout>

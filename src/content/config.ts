@@ -20,6 +20,7 @@ const weaponsCollection = defineCollection({
       category: z.string(),
       order: z.number(),
       ttd: z.array(z.record(z.string())),
+      relatedPositions: z.array(reference("positions")).optional(),
     }),
 });
 
