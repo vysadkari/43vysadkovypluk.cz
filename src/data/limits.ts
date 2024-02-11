@@ -14,8 +14,12 @@ type MaleDisciplines = {
   pullups_b: number | string;
   running_a: string;
   running_b: string;
+  obstacle_course_a: string;
+  obstacle_course_b: string;
   swimming_a: string;
   swimming_b: string;
+  loaded_run_a: string;
+  loaded_run_b: string;
   march_a: string;
   march_b: string;
 };
@@ -31,8 +35,12 @@ type FemaleDisciplines = {
   hanging_b: string;
   running_a: string;
   running_b: string;
+  obstacle_course_a: string;
+  obstacle_course_b: string;
   swimming_a: string;
   swimming_b: string;
+  loaded_run_a: string;
+  loaded_run_b: string;
   march_a: string;
   march_b: string;
 };
@@ -73,9 +81,18 @@ const disciplines: Discipline[] = [
     subtitle: "na 12 minut",
   },
   {
+    id: "obstacle_course",
+    title: "Překážková dráha",
+  },
+  {
     id: "swimming",
     title: "Plavání",
     subtitle: "na 300 metrů",
+  },
+  {
+    id: "loaded_run",
+    title: "Běh se zátěží",
+    subtitle: "na 10 km",
   },
   {
     id: "march",
@@ -94,8 +111,12 @@ const maleLimits: MaleLimits = {
     pullups_b: 10,
     running_a: "2 800",
     running_b: "2 800",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -108,8 +129,12 @@ const maleLimits: MaleLimits = {
     pullups_b: 9,
     running_a: "2 700",
     running_b: "2 700",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -122,8 +147,12 @@ const maleLimits: MaleLimits = {
     pullups_b: 8,
     running_a: "2 600",
     running_b: "2 600",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -136,8 +165,12 @@ const maleLimits: MaleLimits = {
     pullups_b: 7,
     running_a: "2 500",
     running_b: "2 500",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -150,8 +183,12 @@ const maleLimits: MaleLimits = {
     pullups_b: 6,
     running_a: "2 300",
     running_b: "2 300",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -164,8 +201,12 @@ const maleLimits: MaleLimits = {
     pullups_b: "-",
     running_a: "2 100",
     running_b: "2 100",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -183,8 +224,12 @@ const femaleLimits: FemaleLimits = {
     hanging_b: "0:30",
     running_a: "2 300",
     running_b: "2 300",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -199,8 +244,12 @@ const femaleLimits: FemaleLimits = {
     hanging_b: "0:28",
     running_a: "2 200",
     running_b: "2 200",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -215,8 +264,12 @@ const femaleLimits: FemaleLimits = {
     hanging_b: "0:22",
     running_a: "2 100",
     running_b: "2 100",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -231,8 +284,12 @@ const femaleLimits: FemaleLimits = {
     hanging_b: "0:14",
     running_a: "2 000",
     running_b: "2 000",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -247,8 +304,12 @@ const femaleLimits: FemaleLimits = {
     hanging_b: "0:10",
     running_a: "1 900",
     running_b: "1 900",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
@@ -263,8 +324,12 @@ const femaleLimits: FemaleLimits = {
     hanging_b: "-",
     running_a: "1 800",
     running_b: "1 800",
+    obstacle_course_a: "1:45",
+    obstacle_course_b: "3:00",
     swimming_a: "9 minut",
     swimming_b: "uplavat",
+    loaded_run_a: "90 minut",
+    loaded_run_b: "-",
     march_a: "8 hodin",
     march_b: "-",
   },
