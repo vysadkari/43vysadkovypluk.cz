@@ -13,13 +13,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🛫 Instalace závislostí
-        run: yarn install
+        run: npm install
 
       - name: ⚙️ Vytvoření .env souboru
         run: cp .env.example .env
 
       - name: 📦 Sestavení aplikace
-        run: yarn build
+        run: npm run build
 
       - name: 🪂 Nahrání souborů na FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
