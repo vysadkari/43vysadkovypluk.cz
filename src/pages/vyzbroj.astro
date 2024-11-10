@@ -11,15 +11,21 @@ const weapons = await getCollection("weapons");
 ---
 
 <ContentLayout title='Výzbroj' image='/images/vyzbroj/intro.jpg'>
-    <section class='container container-shadow mx-auto bg-stone-900'>
-        {weaponCategories.map(category => (
-            <>
-                <SectionHeading title={category} />
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 p-5">
-                {weapons.filter(weapon => weapon.data.category === category)
-                .sort((a, b) => a.data.order - b.data.order)
-                .map(weapon => <Weapon weapon={weapon} />)}   
-                </div>
-            </d>))}
-    </section>
+  <section class='container container-shadow mx-auto bg-stone-900'>
+    {
+      weaponCategories.map((category) => (
+        <>
+          <SectionHeading title={category} />
+          <div class='grid grid-cols-1 lg:grid-cols-2 gap-5 p-5'>
+            {weapons
+              .filter((weapon) => weapon.data.category === category)
+              .sort((a, b) => a.data.order - b.data.order)
+              .map((weapon) => (
+                <Weapon weapon={weapon} />
+              ))}
+          </div>
+        </>
+      ))
+    }
+  </section>
 </ContentLayout>
